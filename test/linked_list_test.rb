@@ -48,8 +48,22 @@ class LinkedListTest < Minitest::Test
   def test_it_makes_a_string
     list = LinkedList.new
     head = list.append("West")
-    assert_equal "The West family", list.to_string
-  end 
+    assert "The West family" == list.to_string
+  end
+
+  def it_links_family_strings
+    list = LinkedList.new
+    head = list.append("West")
+    assert_equal "The West family followed by the Wilson family", list.to_string
+  end
+
+  def test_it_can_be_preprended
+    list = LinkedList.new
+    head = list.append("West")
+    head = list.prepend("Bloom")
+    assert_equal "Bloom", head.surname
+    assert_equal "West", head.next_node
+  end
 
 
 end
