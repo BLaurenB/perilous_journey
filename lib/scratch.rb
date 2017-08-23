@@ -1,63 +1,26 @@
-def insert(surname)
-  new_node = Node.new(surname)
-  new_node.next = @head #I don't have a .next
-  @head = new_node
-  new_node
+does the position arg need to be passed in at the instantiation?
+
+[5] pry(main)> list.insert(1, "Q")
+=> nil
+
+def insert (position, surname)
+  #if there's nothing to insert, just make a new head
+  if position > count
+    puts "There are only #{count} wagons."
+  elsif @head == nil #is this needed?
+    @head = Node.new(surname)
+  else
+    insert_point.next_node = post_insert_wagon #saves the rest of the wagons
+    insert_point.next_node = Node.new(surname) #creates a new wagon attached to previous wagon
+    insert_point.next_node.next_node = post_insert_wagon #connects insert to post_insert
+  end
 end
 
 
-@head is the initial
-@head.surname  is the Family name of the Node instance
-@head.next_node is the set of Family and next_node's value '
-
-*  last_wagon ***THIS WAS ACTUALLY THE LAST WAGON!
-if head.next_node == nil, current_wagon = head
-If appended, current wagon is a new Node.
-  current_wagon = @head.next_node
-if appended again, the current wagon is @head.next_node.next_node,
-    ...or current_wagon now equals current_wagon.next_node
-
-
-Do I need a current_wagon?
-current wagon is found by associating a new counter starting at the
-head for
-def current
-
+def insert_point
+  potential_insert_point = @head #starting point!
+  (count-1).times do |num|
+    potential_insert_point = potential_insert_point.next_node
+  end
+  return potential_insert_point
 end
-
-
-
-
-
-
-*  next_wagon is the same as current_wagon.next_node
-
-* previous_wagon has 2 parts - split into two methods?
-  1 - getting a place number (p#) for current wagon
-  2 - then doing a .times loop starting at the head to p#-1
-  but what does it do?
-    starting place = @head.next_node
-    (count -1).times do
-      @head.next_node.next_node
-
-
-
-  def to_string
-    family_string = "The #{@head.surname} family"
-    if @all_nodes == 1
-      return family_string
-    end
-
-    wagon = @head
-    "The #{@head.surname} family"
-    while wagon.next_node != nil
-      wagon = wagon.next_node
-      return family_string << "followed by the #{wagon.surname} family "
-    end
-  end
-
-  potential_last_wagon = @head
-  while potential_last_wagon.next_node != nil
-    potential_last_wagon = potential_last_wagon.next_node
-  end
-  return potential_last_wagon
