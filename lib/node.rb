@@ -2,10 +2,9 @@ require 'pry'
 
 class Node
 
-attr_accessor :surname, :next_node, :position
+attr_accessor :surname, :next_node
 
-  def initialize(position = nil, surname)
-    @position = position
+  def initialize(surname)
     @surname = surname
     @next_node = nil
   end

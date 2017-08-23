@@ -3,16 +3,18 @@ require_relative 'node'
 
 class LinkedList
 
-  attr_accessor :head
+  attr_accessor :head, :position
+  attr_reader
 
   def initialize
     @all_nodes = 0
     @head
   end
 
-  def count #***NOTE try changing all @all_nodes instances to their method name
+  def count
     @all_nodes
   end
+
 
   def last_wagon #works!!!
     if @head.next_node == nil
@@ -36,10 +38,6 @@ class LinkedList
     end
   end
 
-  def next_wagon
-    wagon = wagon.next_node
-  end
-
   def prepend(surname) #apparently this doesn't have to be so wordy.
     @all_nodes += 1
     old_head = @head
@@ -49,9 +47,10 @@ class LinkedList
   end
 
   def insert (position, surname)
+    @all_nodes +=1
     #if there's nothing to insert, just make a new head
-    if position > count
-      puts "There are only #{count} wagons."
+    if position > @all_nodes
+      puts "There are only #{@all_nodes} wagons. Please try again."
     elsif @head == nil #is this needed?
       @head = Node.new(surname)
     else
@@ -62,27 +61,31 @@ class LinkedList
   end
 
 
-  def insert_point(position)
+  def insert_point
     potential_insert_point = @head #starting point!
-    (position -1).times do |num|
+
+    (position.to_i).times do |num|
       potential_insert_point = potential_insert_point.next_node
     end
     return potential_insert_point
   end
 
+  # def family_string
+  #   @family_string = "The #{@head.surname} family"
+  # end
 
   def to_string # works!!!
-    family_string = "The #{@head.surname} family"
+  family_string = "The #{@head.surname} family"
     if @all_nodes == 1
       return family_string
-    end
-
+    else
     wagon = @head
-    while wagon.next_node != nil
-      family_string << " followed by the #{wagon.surname} family"
-      wagon = wagon.next_node
+      while wagon.next_node != nil
+        wagon = wagon.next_node
+        family_string << " followed by the #{wagon.surname} family"
+      end
+      return family_string
     end
-    return family_string
   end
 
 

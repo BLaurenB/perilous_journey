@@ -59,11 +59,21 @@ class LinkedListTest < Minitest::Test
 
   def test_it_can_be_preprended
     list = LinkedList.new
-    head = list.append("West")
-    head = list.prepend("Bloom")
-    assert_equal "Bloom", head.surname
-    assert_equal "West", head.next_node
+    head = list.append("B")
+    head = list.prepend("A")
+    assert_equal "A", head.surname
+    assert_equal "B", head.next_node.surname #bc it's the surname of the node instance
   end
+
+def test_it_finds_the_insert_point #test doesn't work but the insert method does work!
+  list = LinkedList.new
+  head = list.append("A")
+  list = list.append("B")
+  list = list.append("C")
+  assert head.next_node.next_node = list.insert_point(2)
+end
+
+
 
 
 end
