@@ -1,26 +1,19 @@
-does the position arg need to be passed in at the instantiation?
-
-[5] pry(main)> list.insert(1, "Q")
-=> nil
-
-def insert (position, surname)
-  #if there's nothing to insert, just make a new head
-  if position > count
-    puts "There are only #{count} wagons."
-  elsif @head == nil #is this needed?
-    @head = Node.new(surname)
-  else
-    insert_point.next_node = post_insert_wagon #saves the rest of the wagons
-    insert_point.next_node = Node.new(surname) #creates a new wagon attached to previous wagon
-    insert_point.next_node.next_node = post_insert_wagon #connects insert to post_insert
-  end
-end
+require "./lib/linked_list"
+list = LinkedList.new
+list.append("A")
 
 
-def insert_point
-  potential_insert_point = @head #starting point!
-  (count-1).times do |num|
-    potential_insert_point = potential_insert_point.next_node
-  end
-  return potential_insert_point
-end
+
+A -> B -> C -> D -> E
+
+wagon = @head # A
+wagon.next_node # B
+wagon.next_node.next_node # C
+
+
+list.pop
+The Henderson family has died of dysentery
+=> <Node surname="Henderson" next_node=nil #5678904567890>
+> list.pop
+The Brooks family has died of dysentery
+=> <Node surname="Brooks" next_node=nil #5678904567890>

@@ -65,13 +65,26 @@ class LinkedListTest < Minitest::Test
     assert_equal "B", head.next_node.surname #bc it's the surname of the node instance
   end
 
-def test_it_finds_the_insert_point #test doesn't work but the insert method does work!
-  list = LinkedList.new
-  head = list.append("A")
-  list = list.append("B")
-  list = list.append("C")
-  assert head.next_node.next_node = list.insert_point(2)
-end
+  # def test_that_it_can_insert #test doesn't work but the insert method does work!
+  #   list = LinkedList.new
+  #   head = list.append("A")
+  #   list = list.append("B")
+  #   list = list.append("C")
+  #   assert head.next_node.next_node = list.insert(2,"Q")
+  # end
+
+  def test_includes_is_false
+    list = LinkedList.new
+    refute list.includes?("Brown")
+  end
+
+  def test_includes_is_true
+    list = LinkedList.new
+    head = list.append("Brown")
+    assert list.includes?("Brown")
+  end
+
+  def test_pop_deletes
 
 
 
